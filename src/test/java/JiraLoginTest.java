@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class JiraLoginTest {
 
     @Test
-    public void loginToJira(){
+    public void loginToJiraTest(){
 
         PropertyReader props = new PropertyReader("/home/vadim/IdeaProjects/sample-property-file-repo/src/main/resources/jira.properties");
 
