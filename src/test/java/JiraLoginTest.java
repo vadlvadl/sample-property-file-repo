@@ -10,16 +10,18 @@ public class JiraLoginTest {
     @Test
     public void loginToJira(){
 
-        Configuration.remote = "http://localhost:4444/wd/hub";
-        Configuration.browser = "chrome";
-        Configuration.timeout = 7000;
+        PropertyReader props = new PropertyReader("/home/vadim/IdeaProjects/sample-property-file-repo/src/main/resources/jira.properties");
 
-        open("http://jira.hillel.it:8080/");
+        Configuration.remote = props.getStringValue("configurationRemote");
+        Configuration.browser = props.getStringValue("configurationBrowser");
+        Configuration.timeout = props.getIntValue("configurationTimeout");
+
+        open(props.getStringValue("jiraURL"));
 
         LoginPage loginPage = new LoginPage();
 
-        loginPage.enterLogin("webinar5");
-        loginPage.enterPassword("webinar5");
+        loginPage.enterLogin(props.getStringValue("jiraLogin"));
+        loginPage.enterPassword(props.getStringValue("jiraPassword"));
         loginPage.clickSubmitButton();
 
         DashboardPage dashboardPage = new DashboardPage();
